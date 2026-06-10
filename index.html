@@ -415,11 +415,21 @@ function selectRace(idx) {
 // ═══════════════════════════════════════════════════
 function renderAll() {
   const r = RACES[currentRace];
+
+  const badgeEl = document.getElementById('hdr-badge');
+  if (badgeEl && r) {
+    const sufijoRegata = r.nombre.split('Regata de ')[1] || r.nombre;
+    const posIcons = {1:'🥇', 2:'🥈', 3:'🥉'};
+    const icono = posIcons[r.pos] || '🏅';
+    badgeEl.innerHTML = `${icono} ${r.pos}.º · ${sufijoRegata}`;
+  }
+
   renderResumen(r);
   renderCadencia(r);
   renderCiaboga(r);
   renderRemeros(r);
   renderMejoras(r);
+}
   // historico is race-independent
 }
 
@@ -837,14 +847,7 @@ function renderHistorico() {
   // hitos
   const last=RACES[RACES.length-1];
 
-  // Modificación para cambiar el puesto y el nombre de la regata arriba a la derecha
-  const badgeEl = document.getElementById('hdr-badge');
-  if (badgeEl) {
-    const sufijoRegata = last.nombre.split('Regata de ')[1] || last.nombre;
-    const posIcons = {1:'🥇', 2:'🥈', 3:'🥉'};
-    const icono = posIcons[last.pos] || '🏅';
-    badgeEl.innerHTML = `${icono} ${last.pos}.º · ${sufijoRegata}`;
-  }
+
   const HITOS=[
     {label:'Reaceleración post-ciaboga',objetivo:'≤15 s', val:`${last.reaceleracion} s`,ok:last.reaceleracion<=15},
     {label:'Tumba en sprint',           objetivo:'>20°',  val:`${last.tumbaSprint}°`,  ok:last.tumbaSprint>20},
