@@ -103,4 +103,515 @@ h1 span{color:var(--sea)}
 .ciab-step{display:flex;gap:14px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border)}
 .ciab-step:last-child{border-bottom:none}
 .ciab-time{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#7b52a8;width:40px;flex-shrink:0;padding-top:2px}
-.ci
+.ciab-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.ciab-text{font-size:12.5px;color:var(--text2);line-height:1.55}
+.ciab-text b{color:var(--text);font-weight:500}
+
+/* ROWERS */
+.rower-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.rower-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.rower-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,107,138,0.14)}
+.rower-header{padding:13px 16px 11px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--border)}
+.rower-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:white;flex-shrink:0}
+.av-babor{background:linear-gradient(135deg,#185FA5,#378ADD)}
+.av-estribor{background:linear-gradient(135deg,#1D8A5E,#3BB87A)}
+.av-patron{background:linear-gradient(135deg,#9a6a10,#d4a030)}
+.rower-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px}
+.rower-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.band-badge{margin-left:auto;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.06em;padding:3px 8px;border-radius:20px;font-weight:500}
+.bb-babor{background:#E6F1FB;color:#185FA5}
+.bb-estribor{background:#E1F5EE;color:#0F6E56}
+.bb-patron{background:#FAEEDA;color:#854F0B}
+.rower-body{padding:13px 16px 16px}
+.score-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.score-label{font-size:11.5px;color:var(--text2);width:88px;flex-shrink:0}
+.score-bg{flex:1;height:5px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.fg{background:linear-gradient(90deg,#1D8A5E,#5DCAA5)}
+.fa{background:linear-gradient(90deg,#BA7517,#EF9F27)}
+.fr{background:linear-gradient(90deg,#993C1D,#D85A30)}
+.fb{background:linear-gradient(90deg,#185FA5,#378ADD)}
+.fp{background:linear-gradient(90deg,#6b3a9a,#a06ed4)}
+.score-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);width:28px;text-align:right}
+.phase-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
+.chip{font-size:10px;padding:2px 8px;border-radius:20px;font-family:'DM Mono',monospace}
+.chip-g{background:#E1F5EE;color:#0F6E56}
+.chip-a{background:#FAEEDA;color:#854F0B}
+.chip-r{background:#FAECE7;color:#993C1D}
+.chip-p{background:#f0eaff;color:#6b3a9a}
+.note-box{margin-top:11px;padding:9px 11px;background:var(--sea-pale);border-radius:8px;border-left:3px solid var(--sea)}
+.note-ttl{font-size:10px;font-weight:500;color:var(--sea);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.note-txt{font-size:12px;color:var(--text2);line-height:1.6}
+.priority-box{margin-top:7px;padding:9px 11px;background:#f3eeff;border-radius:8px;border-left:3px solid #7b52a8}
+.priority-box .note-ttl{color:#7b52a8}
+
+/* EVOL badge on rower card */
+.evol-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:2px 8px;border-radius:10px;font-family:'DM Mono',monospace;margin-top:6px}
+.evol-up{background:#e1f5ee;color:#0f6e56}
+.evol-down{background:#faece7;color:#993c1d}
+.evol-same{background:var(--sea-pale);color:var(--sea)}
+.evol-new{background:#faeeda;color:#854f0b}
+
+/* MEJORAS */
+.mej-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:18px}
+.mej-card{background:var(--white);border-radius:var(--radius);padding:17px 19px;border:1px solid var(--border);border-left:4px solid;box-shadow:var(--shadow)}
+.mej-card.pos{border-left-color:#1D8A5E}
+.mej-card.neg{border-left-color:#D85A30}
+.mej-card.tip{border-left-color:#185FA5}
+.mej-card.cib{border-left-color:#7b52a8}
+.mej-icon{font-size:19px;margin-bottom:7px}
+.mej-ttl{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:6px}
+.mej-txt{font-size:12.5px;color:var(--text2);line-height:1.65}
+
+/* HISTÓRICO */
+.hist-card{background:var(--white);border-radius:var(--radius);padding:22px;border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:16px}
+.week-row{display:flex;align-items:center;gap:12px;padding:10px 8px;border-bottom:1px solid var(--border);border-radius:8px;transition:background .15s}
+.week-row:last-child{border-bottom:none}
+.week-row:hover{background:var(--sea-pale)}
+.week-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);width:50px}
+.week-date{font-size:13px;font-weight:500;color:var(--text);flex:1}
+.week-pos{font-family:'Syne',sans-serif;font-weight:700;font-size:14px}
+.pos-1{color:#c89a2e}.pos-2{color:#888}.pos-3{color:#a06030}.pos-other{color:var(--sea)}
+.week-cadencia{font-family:'DM Mono',monospace;font-size:11px;background:var(--sea-pale);padding:3px 9px;border-radius:20px;color:var(--sea)}
+.week-trend{font-size:13px}
+.msel{padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--text2);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .15s}
+.msel:hover{border-color:var(--sea);color:var(--sea)}
+.msel.active{background:var(--sea);color:white;border-color:var(--sea)}
+.hito-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
+.hito-row:last-child{border-bottom:none}
+.hito-icon{font-size:15px;flex-shrink:0}
+.hito-label{flex:1;color:var(--text2)}
+.hito-vals{font-family:'DM Mono',monospace;font-size:12px;display:flex;gap:8px;align-items:center}
+.hito-ok{color:#1d8a5e;font-weight:500}
+.hito-nog{color:#b07010;font-weight:500}
+.hito-badge{font-size:10px;padding:2px 7px;border-radius:10px}
+.badge-ok{background:#e1f5ee;color:#0f6e56}
+.badge-prog{background:#faeeda;color:#854f0b}
+
+@media(max-width:560px){
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .ph .ph-sub{display:none}
+  .ph{font-size:10px}
+  .nav-tabs{width:100%}
+  .header-brand-container {gap: 12px;}
+  .header-logo {width: 55px; height: 55px;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+  <div class="header-top">
+    <div class="header-brand-container">
+      <img src="la-arana-768x768.jpg.webp" alt="Logo La Araña" class="header-logo">
+      <div>
+        <div class="club-lbl">⚡ Jábega La Araña · Málaga · Veterano Masculino</div>
+        <h1>Análisis de <span>Regatas</span><br>Temporada 2026</h1>
+      </div>
+    </div>
+    <div class="badge" id="hdr-badge">🥉 3.º · Huelin</div>
+  </div>
+  
+  <div class="header-meta" style="margin-top: -4px; margin-bottom: 16px; padding-left: 88px;">
+    <span>Equipo: <b>La Araña</b></span>
+    <span>Regatas: <b id="hdr-total">2</b></span>
+    <span>Mejor dif. con 1.º: <b>+1.39 s</b></span>
+  </div>
+
+  <div class="race-selector" id="race-selector"></div>
+</header>
+
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="showPanel('resumen',this)">Resumen</button>
+  <button class="tab-btn" onclick="showPanel('cadencia',this)">Cadencia</button>
+  <button class="tab-btn" onclick="showPanel('ciaboga',this)">Ciaboga</button>
+  <button class="tab-btn" onclick="showPanel('remeros',this)">Remeros</button>
+  <button class="tab-btn" onclick="showPanel('mejoras',this)">Plan</button>
+  <button class="tab-btn" onclick="showPanel('historico',this)">Histórico</button>
+</nav>
+
+<div id="panel-resumen"  class="panel active"></div>
+<div id="panel-cadencia" class="panel"></div>
+<div id="panel-ciaboga"  class="panel"></div>
+<div id="panel-remeros"  class="panel"></div>
+<div id="panel-mejoras"  class="panel"></div>
+<div id="panel-historico" class="panel"></div>
+
+</div><script>
+// ═══════════════════════════════════════════════════
+// DATOS — editar solo este bloque cada semana
+// ═══════════════════════════════════════════════════
+const RACES = [
+  {
+    week:1, date:'30 Mayo 2026', nombre:'Regata de Pedregalejo',
+    pos:3, total:12, tiempoOficial:'3:49.56', difLider:8.28,
+    distancia:700, tiempoReal:'3:56', cadMedia:27, cadMax:34, cadSprint:31,
+    ciabogaDur:25, reaceleracion:25, tumbaIda:30, tumbaSprint:12, velPalada:7.0,
+    notes:'Ciaboga limpia. Reaceleración mejorable (25 s). Tumba cae en sprint (30°→12°).',
+    // Fases para gráfico cadencia
+    fases:[
+      {nombre:'Ida',       t:'0:16', cad:34, tumba:30, vel:7.2, col:'#185FA5', flex:13},
+      {nombre:'Desarrollo',t:'0:46', cad:27, tumba:28, vel:7.0, col:'#1D9E75', flex:25},
+      {nombre:'Ciaboga',   t:'2:10', cad:null,tumba:null,vel:null,col:'#7b52a8',flex:15},
+      {nombre:'Reac.',     t:'2:35', cad:24, tumba:20, vel:6.4, col:'#0f7a8a', flex:14},
+      {nombre:'Sprint',    t:'3:00', cad:31, tumba:12, vel:6.1, col:'#993C1D', flex:33},
+    ],
+    ciabogaSteps:[
+      {t:'2:10',col:'#185FA5',txt:'<b>Aproximación a la boya</b> — Boya roja en cuadro. Cadencia de crucero ~27 pal/min. Patrón carga la espailla.'},
+      {t:'2:15',col:'#7b52a8',txt:'<b>Inicio del giro</b> — Boya a babor. Estribor reduce potencia, babor aumenta. La barca vira.'},
+      {t:'2:20',col:'#7b52a8',txt:'<b>Giro en curso</b> — Boya pegada al costado babor. Remos asimétricas. Patrón firme en la espailla.'},
+      {t:'2:28',col:'#7b52a8',txt:'<b>Completando la virada</b> — Proa apunta a la playa. Remos de estribor tardan ~5 s en reordenarse.'},
+      {t:'2:35',col:'#0f7a8a',txt:'<b>Fin de ciaboga</b> — Barca orientada. Pacha marca ~22 pal/min para reorganizar.'},
+      {t:'2:50',col:'#0f7a8a',txt:'<b>Reaceleración</b> — Cadencia sube a ~24 pal/min. La «caída» que se veía era esta phase, no fatiga.'},
+      {t:'3:00',col:'#993C1D',txt:'<b>Crucero retomado → Sprint</b> — Patrón se incorpora a remar. Transición directa al sprint.'},
+    ],
+    alineacion:[
+      {id:'che',    nombre:'Che',        pos:'B1 · Pacha', banda:'babor',   avatar:'CH'},
+      {id:'jcarlos',nombre:'Juan Carlos',pos:'B2',         banda:'babor',   avatar:'JC'},
+      {id:'paco',   nombre:'Paco',       pos:'B3',         banda:'babor',   avatar:'PA'},
+      {id:'antonio',nombre:'Antonio',    pos:'B4',         banda:'babor',   avatar:'AN'},
+      {id:'benjamin',nombre:'Benjamín',  pos:'E1 · Marca', banda:'estribor',avatar:'BJ'},
+      {id:'juanjo', nombre:'Juanjo',     pos:'E2',         banda:'estribor',avatar:'JJ'},
+      {id:'asier',  nombre:'Asier',      pos:'E3',         banda:'estribor',avatar:'AS'},
+      {id:'pedro',  nombre:'Pedro',      pos:'Patrón',      banda:'patron',  avatar:'PT'},
+    ],
+    remeros:{
+      che:    {scores:[{l:'Técnica',p:82,c:'fg'},{l:'Sincronía',p:92,c:'fg'},{l:'Resistencia',p:72,c:'fa'},{l:'Amplitud',p:85,c:'fg'},{l:'Ciaboga',p:80,c:'fp'}],
+               phases:['chip-g','chip-g','chip-p','chip-a','chip-g'],
+               notes:'Ritmo claro y firme. Buena amplitud. Pequeña pérdida en reaceleración post-ciaboga.',
+               priority:'Entrenar la primera palada tras la ciaboga como acción refleja.'},
+      jcarlos:{scores:[{l:'Técnica',p:84,c:'fg'},{l:'Sincronía',p:88,c:'fg'},{l:'Resistencia',p:80,c:'fg'},{l:'Constancia',p:86,c:'fg'},{l:'Ciaboga',p:82,c:'fg'}],
+               phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+               notes:'Remero más consistente. Mantiene postura y extensión en toda la regata. Rápida reincorporación post-ciaboga.',
+               priority:'Mantener el nivel. Puede asumir liderazgo si el pacha decae.'},
+      paco:   {scores:[{l:'Técnica',p:72,c:'fa'},{l:'Sincronía',p:74,c:'fa'},{l:'Resistencia',p:55,c:'fr'},{l:'Recobro',p:63,c:'fa'},{l:'Ciaboga',p:70,c:'fa'}],
+               phases:['chip-g','chip-a','chip-a','chip-a','chip-a'],
+               notes:'Acusa fatiga precoz: recobro se acorta a partir del min 2. Hombros suben bajo esfuerzo.',
+               priority:'Programa de fuerza-resistencia fuera del agua. Series largas priorizando calidad técnica.'},
+      antonio:{scores:[{l:'Técnica',p:78,c:'fg'},{l:'Sincronía',p:72,c:'fa'},{l:'Resistencia',p:70,c:'fa'},{l:'Sprint',p:67,c:'fa'},{l:'Ciaboga',p:75,c:'fp'}],
+               phases:['chip-g','chip-g','chip-p','chip-a','chip-a'],
+               notes:'Buena primera mitad. A partir del min 2 pierde coordinación con el pacha. Fatiga afecta timing de entrada.',
+               priority:'Series de seguimiento del ritmo bajo fatiga: 3×3 min a ritmo de carrera.'},
+      benjamin:{scores:[{l:'Técnica',p:76,c:'fg'},{l:'Sincronía',p:65,c:'fa'},{l:'Resistencia',p:74,c:'fa'},{l:'Reacción',p:60,c:'fa'},{l:'Ciaboga',p:62,c:'fa'}],
+               phases:['chip-g','chip-g','chip-a','chip-a','chip-a'],
+               notes:'Como marca retarda ~0.5 s los cambios del pacha, arrastrando al resto de estribor.',
+               priority:'Sesiones dúo pacha–marca para reducir retardo a <0.2 s.'},
+      juanjo: {scores:[{l:'Técnica',p:70,c:'fa'},{l:'Sincronía',p:64,c:'fa'},{l:'Resistencia',p:68,c:'fa'},{l:'Ángulo',p:55,c:'fr'},{l:'Ciaboga',p:60,c:'fa'}],
+               phases:['chip-g','chip-a','chip-a','chip-r','chip-a'],
+               notes:'Ángulo de ataque cae en segunda mitad. Hombros altos y remo más vertical.',
+               priority:'Extensión hacia proa en posición de agarre. Grabación lateral para detectar pérdida de ángulo.'},
+      asier:  {scores:[{l:'Técnica',p:62,c:'fa'},{l:'Sincronía',p:60,c:'fa'},{l:'Extracción',p:50,c:'fr'},{l:'Resistencia',p:65,c:'fa'},{l:'Ciaboga',p:58,c:'fa'}],
+               phases:['chip-g','chip-a','chip-a','chip-r','chip-a'],
+               notes:'Remo sale antes de completar el tirón. Pérdida de energía en la extracción, más pronunciada en segunda mitad.',
+               priority:'Trabajo de extracción: finalizar tirón hasta la cadera. Paladas cortas para sentir el final del recorrido.'},
+      pedro:  {scores:[{l:'Gobierno',p:92,c:'fg'},{l:'Rumbo',p:95,c:'fg'},{l:'Ciaboga',p:85,c:'fp'},{l:'Comunicación',p:62,c:'fa'},{l:'Sprint',p:80,c:'fg'}],
+               phases:['chip-g','chip-g','chip-p','chip-a','chip-g'],
+               notes:'Gestión de espailla sobresaliente. Ciaboga limpia. Comunicación verbal no perceptible en el bajón.',
+               priority:'Protocolo verbal: aviso pre-ciaboga, "¡ya!" al inicio de reaceleración, señal de sprint en 3:00.'},
+    },
+    mejoras:[
+      {tipo:'pos',icon:'🎯',ttl:'Mantener: salida explosiva',txt:'34 pal/min los primeros 30 s. Consolidar la señal de inicio entre pacha y patrón.'},
+      {tipo:'pos',icon:'⚓',ttl:'Mantener: sprint con patrón',txt:'Incorporación de Pedro a remar desde 3:00 aporta potencia extra. Fijar como norma.'},
+      {tipo:'pos',icon:'✅',ttl:'Mantener: rumbo impecable',txt:'Mínimas correcciones de espailla. Cero energía perdida en deriva lateral.'},
+      {tipo:'cib',icon:'🔄',ttl:'P1: Reaceleración post-ciaboga',txt:'25 s para volver a crucero. Objetivo <15 s. Entrenar la ciaboga como phase específica.'},
+      {tipo:'neg',icon:'🔄',ttl:'P2: Estribor en transiciones',txt:'Marca retarda ~0.5 s al pacha. Sesiones dúo pacha–marca. Objetivo: <0.2 s.'},
+      {tipo:'neg',icon:'📐',ttl:'P3: Ángulo de ataque',txt:'Remos más verticales bajo fatiga. Paladas lentas en espejo para fijar el hábito.'},
+      {tipo:'tip',icon:'💬',ttl:'Señal verbal de sprint',txt:'La transición a 3:00 es silenciosa. Una señal clara de Pedro sincronizaría mejor.'},
+    ],
+  },
+  {
+    week:2, date:'6 Junio 2026', nombre:'Regata de Huelin',
+    pos:3, total:12, tiempoOficial:'3:31.82', difLider:1.39,
+    distancia:680, tiempoReal:'3:37', cadMedia:28, cadMax:33, cadSprint:32,
+    ciabogaDur:20, reaceleracion:15, tumbaIda:28, tumbaSprint:18, velPalada:7.1,
+    notes:'Gran mejora vs líder (+1.4 s). Ciaboga más rápida (20 s). Reaceleración objetivo cumplido (15 s). Tumba sprint mejorada.',
+    fases:[
+      {nombre:'Ida',       t:'0:06', cad:33, tumba:28, vel:7.2, col:'#185FA5', flex:13},
+      {nombre:'Desarrollo',t:'0:36', cad:28, tumba:26, vel:7.1, col:'#1D9E75', flex:26},
+      {nombre:'Ciaboga',   t:'1:50', cad:null,tumba:null,vel:null,col:'#7b52a8',flex:13},
+      {nombre:'Reac.',     t:'2:10', cad:25, tumba:20, vel:6.8, col:'#0f7a8a', flex:11},
+      {nombre:'Sprint',    t:'2:25', cad:32, tumba:18, vel:6.6, col:'#993C1D', flex:37},
+    ],
+    ciabogaSteps:[
+      {t:'1:50',col:'#185FA5',txt:'<b>Aproximación a la boya</b> — Boya roja visible. Patrón prepara el giro con más anticipación que en Pedregalejo.'},
+      {t:'1:55',col:'#7b52a8',txt:'<b>Inicio del giro</b> — Virada más ajustada al la boya. Radio menor que en Pedregalejo.'},
+      {t:'2:02',col:'#7b52a8',txt:'<b>Giro completado</b> — En solo ~12 s la barca está orientada de vuelta. Mejora notable.'},
+      {t:'2:10',col:'#0f7a8a',txt:'<b>Reaceleración rápida</b> — En 15 s ya están a cadencia de crucero. Objetivo cumplido.'},
+      {t:'2:25',col:'#993C1D',txt:'<b>Sprint</b> — Encadena directamente desde la reaceleración. Patrón rema desde el inicio del sprint.'},
+    ],
+    alineacion:[
+      {id:'che',     nombre:'Che',        pos:'B1 · Pacha', banda:'babor',   avatar:'CH'},
+      {id:'juan',    nombre:'Juan',      pos:'B2',         banda:'babor',   avatar:'JU'},
+      {id:'jcarlos', nombre:'Juan Carlos',pos:'B3',         banda:'babor',   avatar:'JC'},
+      {id:'paco',    nombre:'Paco',      pos:'B4',         banda:'babor',   avatar:'PA'},
+      {id:'patricio',nombre:'Patricio',  pos:'E1 · Marca', banda:'estribor',avatar:'PC'},
+      {id:'benjamin',nombre:'Benjamín',  pos:'E2',         banda:'estribor',avatar:'BJ'},
+      {id:'enrique', nombre:'Enrique',   pos:'E3',         banda:'estribor',avatar:'EN'},
+      {id:'pedro',   nombre:'Pedro',     pos:'Patrón',      banda:'patron',  avatar:'PT'},
+    ],
+    remeros:{
+      che:     {scores:[{l:'Técnica',p:85,c:'fg'},{l:'Sincronía',p:93,c:'fg'},{l:'Resistencia',p:78,c:'fg'},{l:'Amplitud',p:86,c:'fg'},{l:'Ciaboga',p:88,c:'fg'}],
+                phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+                notes:'Mejora clara respecto a Pedregalejo. Reincorporación post-ciaboga más rápida. Mantiene ritmo en sprint.',
+                priority:'Consolidar la mejora en resistencia. Objetivo: cadencia sprint ≥33.',
+                evol:{ref:'che',label:'vs Pedregalejo',tipo:'up'}},
+      juan:    {scores:[{l:'Técnica',p:75,c:'fg'},{l:'Sincronía',p:78,c:'fg'},{l:'Resistencia',p:72,c:'fa'},{l:'Amplitud',p:70,c:'fa'},{l:'Ciaboga',p:74,c:'fa'}],
+                phases:['chip-g','chip-g','chip-a','chip-a','chip-a'],
+                notes:'Primera regata en B2. Buena técnica individual. Sincronía con el pacha sólida en la primera mitad.',
+                priority:'Trabajar la resistencia para mantener el nivel técnico en la segunda mitad.',
+                evol:{ref:null,label:'Primera regata',tipo:'new'}},
+      jcarlos: {scores:[{l:'Técnica',p:83,c:'fg'},{l:'Sincronía',p:85,c:'fg'},{l:'Resistencia',p:82,c:'fg'},{l:'Constancia',p:84,c:'fg'},{l:'Ciaboga',p:85,c:'fg'}],
+                phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+                notes:'Se adapta bien al cambio de B2 a B3. Mantiene su nivel alto. Muy buen referente para la nueva alineación.',
+                priority:'Referente de consistencia. Puede tutorizar a Juan en B2.',
+                evol:{ref:'jcarlos',label:'vs Pedregalejo (B2→B3)',tipo:'same'}},
+      paco:    {scores:[{l:'Técnica',p:74,c:'fa'},{l:'Sincronía',p:75,c:'fa'},{l:'Resistencia',p:62,c:'fa'},{l:'Recobro',p:67,c:'fa'},{l:'Ciaboga',p:72,c:'fa'}],
+                phases:['chip-g','chip-a','chip-a','chip-a','chip-a'],
+                notes:'Leve mejora respecto a Pedregalejo pero sigue siendo el punto más débil en resistencia. El cambio a B4 no ha afectado negativamente.',
+                priority:'Continuar con programa de fuerza-resistencia. El objetivo es mantener el recobro largo en la segunda mitad.',
+                evol:{ref:'paco',label:'vs Pedregalejo (B3→B4)',tipo:'up'}},
+      patricio:{scores:[{l:'Técnica',p:78,c:'fg'},{l:'Sincronía',p:74,c:'fa'},{l:'Resistencia',p:76,c:'fg'},{l:'Reacción',p:72,c:'fa'},{l:'Ciaboga',p:70,c:'fa'}],
+                phases:['chip-g','chip-g','chip-a','chip-a','chip-a'],
+                notes:'Primera regata como marca. Mejor reacción a cambios de ritmo que Benjamín en Pedregalejo (~0.3 s de retardo). Margen de mejora en la segunda mitad.',
+                priority:'Sesiones dúo pacha–marca. Objetivo: retardo <0.2 s en toda la regata.',
+                evol:{ref:null,label:'Primera regata',tipo:'new'}},
+      benjamin:{scores:[{l:'Técnica',p:77,c:'fg'},{l:'Sincronía',p:78,c:'fg'},{l:'Resistencia',p:76,c:'fg'},{l:'Ángulo',p:68,c:'fa'},{l:'Ciaboga',p:72,c:'fa'}],
+                phases:['chip-g','chip-g','chip-a','chip-g','chip-g'],
+                notes:'Sin el rol de marca mejora notablemente su sincronía y técnica. El cambio de E1 a E2 le ha favorecido en esta regata.',
+                priority:'Consolidar la mejora técnica. El ángulo de ataque sigue siendo el punto a trabajar.',
+                evol:{ref:'benjamin',label:'vs Pedregalejo (E1→E2)',tipo:'up'}},
+      enrique: {scores:[{l:'Técnica',p:70,c:'fa'},{l:'Sincronía',p:68,c:'fa'},{l:'Resistencia',p:72,c:'fa'},{l:'Extracción',p:65,c:'fa'},{l:'Ciaboga',p:66,c:'fa'}],
+                phases:['chip-g','chip-a','chip-a','chip-a','chip-a'],
+                notes:'Primera regata. Nivel técnico aceptable. La extracción es el punto más débil: sale antes de completar el tirón.',
+                priority:'Trabajo de extracción: finalizar tirón hasta la cadera. Revisión en vídeo lateral.',
+                evol:{ref:null,label:'Primera regata',tipo:'new'}},
+      pedro:   {scores:[{l:'Gobierno',p:93,c:'fg'},{l:'Rumbo',p:95,c:'fg'},{l:'Ciaboga',p:90,c:'fg'},{l:'Comunicación',p:72,c:'fa'},{l:'Sprint',p:85,c:'fg'}],
+                phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+                notes:'Ciaboga claramente mejor que en Pedregalejo: radio más ajustado, giro en ~12 s. Se incorpora a remar antes en el sprint. Comunicación verbal mejorada.',
+                priority:'Establecer señal verbal estándar pre-ciaboga para toda la temporada.',
+                evol:{ref:'pedro',label:'vs Pedregalejo',tipo:'up'}},
+    },
+    mejoras:[
+      {tipo:'pos',icon:'✅',ttl:'Conseguido: reaceleración 15 s',txt:'Objetivo cumplido. De 25 s a 15 s. El entrenamiento específico de ciaboga ha funcionado.'},
+      {tipo:'pos',icon:'✅',ttl:'Conseguido: ciaboga más rápida',txt:'20 s vs 25 s. Radio más ajustado y giro más decidido de Pedro.'},
+      {tipo:'pos',icon:'✅',ttl:'Conseguido: tumba sprint +6°',txt:'De 12° a 18°. La mejora en técnica bajo fatiga es visible. Objetivo: superar 20°.'},
+      {tipo:'neg',icon:'📐',ttl:'P1: Tumba sprint aún por debajo',txt:'18° vs objetivo de 20°. Continuar trabajo técnico en espejo bajo fatiga.'},
+      {tipo:'neg',icon:'🔄',ttl:'P2: Marca (Patricio) en transiciones',txt:'~0.3 s de retardo. Mejor que Benjamín en Pedregalejo pero aún por encima del objetivo <0.2 s.'},
+      {tipo:'tip',icon:'💬',ttl:'Comunicación verbal mejorada',txt:'Pedro más activemente en Huelin. Continuar con protocolo de señales en cada regata.'},
+    ],
+  },
+];
+
+// ═══════════════════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════════════════
+let currentRace = RACES.length - 1; // mostrar última por defecto
+
+// ═══════════════════════════════════════════════════
+// RENDER RACE SELECTOR
+// ═══════════════════════════════════════════════════
+function renderSelector() {
+  document.getElementById('race-selector').innerHTML = RACES.map((r,i) => `
+    <button class="race-btn ${i===currentRace?'active':''}" onclick="selectRace(${i})">
+      ${r.nombre}
+      <span class="race-btn-date">${r.date} · ${r.pos}.º/${r.total}</span>
+    </button>`).join('');
+}
+
+function selectRace(idx) {
+  currentRace = idx;
+  renderSelector();
+  renderAll();
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER ALL PANELS FOR CURRENT RACE
+// ═══════════════════════════════════════════════════
+function renderAll() {
+  const r = RACES[currentRace];
+  renderResumen(r);
+  renderCadencia(r);
+  renderCiaboga(r);
+  renderRemeros(r);
+  renderMejoras(r);
+  renderHistorico();
+}
+
+// ── RESUMEN ─────────────────────────────────────────
+function renderResumen(r) {
+  const prev = currentRace > 0 ? RACES[currentRace-1] : null;
+  const difTag = prev ? `<span style="font-size:11px;color:${r.difLider<prev.difLider?'#1d8a5e':'#d85a30'}">${r.difLider<prev.difLider?'↓':'↑'} vs anterior</span>` : '';
+  
+  // Actualizar cabecera dinamica
+  document.getElementById('hdr-badge').innerHTML = `${r.pos===1?'🥇':r.pos===2?'🥈':'🥉'} ${r.pos}.º · ${r.nombre.replace('Regata de ','')}`;
+  document.getElementById('hdr-total').innerText = RACES.length;
+
+  document.getElementById('panel-resumen').innerHTML = `
+    <div class="stat-grid">
+      <div class="stat-card accent"><div class="stat-lbl">Tiempo oficial</div><div class="stat-val">${r.tiempoOficial}</div><div class="stat-unit">${r.nombre}</div></div>
+      <div class="stat-card"><div class="stat-lbl">Tiempo real</div><div class="stat-val">${r.tiempoReal}</div><div class="stat-unit">sin pre/post</div></div>
+      <div class="stat-card"><div class="stat-lbl">Dif. con 1.º</div><div class="stat-val" style="color:${r.difLider<5?'#1d8a5e':'var(--coral)'}">+${r.difLider}s</div><div class="stat-unit">${difTag}</div></div>
+      <div class="stat-card"><div class="stat-lbl">Cadencia media</div><div class="stat-val">${r.cadMedia}</div><div class="stat-unit">pal/min</div></div>
+      <div class="stat-card"><div class="stat-lbl">Cadencia máx.</div><div class="stat-val" style="color:#1d8a5e">${r.cadMax}</div><div class="stat-unit">pal/min · salida</div></div>
+      <div class="stat-card gold-c"><div class="stat-lbl">Vel/palada</div><div class="stat-val">${r.velPalada}</div><div class="stat-unit">metros · media</div></div>
+    </div>
+    <div class="card mb16">
+      <div class="sec-lbl">Fases · ${r.tiempoReal}</div>
+      <div class="phase-bar">${r.fases.map(f=>`<div class="ph" style="background:${f.col};flex:${f.flex}"><span>${f.nombre}</span><span class="ph-sub">${f.t}</span></div>`).join('')}</div>
+      <div class="phase-legend">${r.fases.map(f=>`<span><span class="pl-dot" style="background:${f.col}"></span>${f.nombre}${f.cad?` · ${f.cad} p/m`:' · ciaboga'}</span>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">Notas de Regata</div>
+      <p style="font-size:13.5px; line-height:1.6; color:var(--text2)">${r.notes}</p>
+    </div>`;
+}
+
+// ── CADENCIA ────────────────────────────────────────
+function renderCadencia(r) {
+  document.getElementById('panel-cadencia').innerHTML = `
+    <div class="card mb16">
+      <div class="sec-lbl">Curva de Esfuerzo & Ritmo</div>
+      <div class="chart-area" style="padding:40px 20px; text-align:center; font-family:'DM Mono',monospace; font-size:12px; color:var(--sea-mid)">
+        [ Gráfico Temporal de Cadencia — Salida: ${r.cadMax} p/m | Crucero: ${r.cadMedia} p/m | Sprint: ${r.cadSprint} p/m ]
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="stat-card"><div class="stat-lbl">Tumba Media Ida</div><div class="stat-val">${r.tumbaIda}°</div><div class="stat-unit">Inclinación cuerpo</div></div>
+      <div class="stat-card"><div class="stat-lbl">Tumba Sprint</div><div class="stat-val" style="color:${r.tumbaSprint>=20?'#1d8a5e':'var(--amber)'}">${r.tumbaSprint}°</div><div class="stat-unit">Objetivo: 20°</div></div>
+    </div>`;
+}
+
+// ── CIABOGA ─────────────────────────────────────────
+function renderCiaboga(r) {
+  document.getElementById('panel-ciaboga').innerHTML = `
+    <div class="ciab-grid">
+      <div class="ciab-metric"><div class="stat-lbl">Maniobra Boya</div><div class="stat-val">${r.ciabogaDur} s</div><div class="stat-unit">Giro completo</div></div>
+      <div class="ciab-metric"><div class="stat-lbl">Reaceleración</div><div class="stat-val" style="color:${r.reaceleracion<=15?'#1d8a5e':'#7b52a8'}">${r.reaceleracion} s</div><div class="stat-unit">Tiempo hasta crucero</div></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">Análisis de la Virada paso a paso</div>
+      <div>${r.ciabogaSteps.map(s=>`
+        <div class="ciab-step">
+          <div class="ciab-time">${s.t}</div>
+          <div class="ciab-dot" style="background:${s.col}"></div>
+          <div class="ciab-text">${s.txt}</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+// ── REMEROS ─────────────────────────────────────────
+function renderRemeros(r) {
+  document.getElementById('panel-remeros').innerHTML = `
+    <div class="rower-grid">${r.alineacion.map(rem => {
+      const detail = r.remeros[rem.id] || {scores:[], phases:[], notes:'', priority:''};
+      const evolTag = detail.evol ? `<span class="evol-badge evol-${detail.evol.tipo}">${detail.evol.tipo==='up'?'↑':detail.evol.tipo==='down'?'↓':'•'} ${detail.evol.label}</span>` : '';
+      
+      return `
+        <div class="rower-card">
+          <div class="rower-header">
+            <div class="rower-avatar av-${rem.banda}">${rem.avatar}</div>
+            <div>
+              <div class="rower-name">${rem.nombre}</div>
+              <div class="rower-sub">${rem.pos}</div>
+            </div>
+            <span class="band-badge bb-${rem.banda}">${rem.banda.toUpperCase()}</span>
+          </div>
+          <div class="rower-body">
+            ${detail.scores.map(s => `
+              <div class="score-row">
+                <span class="score-label">${s.l}</span>
+                <div class="score-bg"><div class="score-fill ${s.c}" style="width:${s.p}%"></div></div>
+                <span class="score-pct">${s.p}</span>
+              </div>`).join('')}
+            
+            ${evolTag}
+
+            <div class="note-box">
+              <div class="note-ttl">Observación</div>
+              <div class="note-txt">${detail.notes}</div>
+            </div>
+            ${detail.priority ? `
+            <div class="priority-box">
+              <div class="note-ttl">Prioridad Técnica</div>
+              <div class="note-txt">${detail.priority}</div>
+            </div>` : ''}
+          </div>
+        </div>`;
+    }).join('')}</div>`;
+}
+
+// ── MEJORAS ─────────────────────────────────────────
+function renderMejoras(r) {
+  const cats = {
+    pos: {t:'Fortalezas a Mantener', c:'pos'},
+    neg: {t:'Puntos Críticos (Prioridades)', c:'neg'},
+    cib: {t:'Análisis Específico Ciaboga', c:'cib'},
+    tip: {t:'Notas Estratégicas', c:'tip'}
+  };
+  
+  let html = '<div class="mej-grid">';
+  ['pos','neg','cib','tip'].forEach(cat => {
+    const items = r.mejoras.filter(m => m.tipo === cat);
+    if(items.length === 0) return;
+    html += `
+      <div style="grid-column: 1 / -1; margin-top:10px"><div class="sec-lbl">${cats[cat].t}</div></div>
+      ${items.map(m => `
+        <div class="mej-card ${cats[cat].c}">
+          <div class="mej-icon">${m.icon}</div>
+          <div class="mej-ttl">${m.ttl}</div>
+          <div class="mej-txt">${m.txt}</div>
+        </div>`).join('')}`;
+  });
+  html += '</div>';
+  document.getElementById('panel-mejoras').innerHTML = html;
+}
+
+// ── HISTÓRICO ───────────────────────────────────────
+function renderHistorico() {
+  document.getElementById('panel-historico').innerHTML = `
+    <div class="hist-card">
+      <div class="sec-lbl">Evolución de Puestos y Tiempos</div>
+      <div style="margin-top:10px">
+        ${RACES.map(r => `
+          <div class="week-row">
+            <div class="week-num">S${r.week}</div>
+            <div class="week-date"><b>${r.nombre}</b><br><span style="font-size:11px; color:var(--text3)">${r.date} · Dif: +${r.difLider}s</span></div>
+            <div class="week-cadencia">${r.cadMedia} p/m</div>
+            <div class="week-pos pos-${r.pos<=3?r.pos:'other'}">${r.pos}.º</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">Hitos de la Temporada 2026</div>
+      <div class="hito-row"><span class="hito-icon">🏁</span><div class="hito-label">Regatas Completadas</div><div class="hito-vals"><b>${RACES.length}</b></div></div>
+      <div class="hito-row"><span class="hito-icon">🏆</span><div class="hito-label">Podios Obtenidos</div><div class="hito-vals"><span class="hito-ok"><b>${RACES.filter(r=>r.pos<=3).length}</b></span></div></div>
+      <div class="hito-row"><span class="hito-icon">⏱️</span><div class="hito-label">Brecha Mínima con el Líder</div><div class="hito-vals"><span class="hito-badge badge-ok"><b>+1.39 s</b> (Huelin)</span></div></div>
+      <div class="hito-row"><span class="hito-icon">🔄</span><div class="hito-label">Objetivo Ciaboga (Sub 22s)</div><div class="hito-vals"><span class="hito-badge badge-ok">Conseguido (20s)</span></div></div>
+      <div class="hito-row"><span class="hito-icon">📐</span><div class="hito-label">Objetivo Tumba Sprint (20°)</div><div class="hito-vals"><span class="hito-badge badge-prog">En Progreso (18°)</span></div></div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════
+// GLOBAL TABS LOGIC
+// ═══════════════════════════════════════════════════
+window.showPanel = function(panelId, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  
+  const target = document.getElementById('panel-' + panelId);
+  if(target) target.classList.add('active');
+  if(btn) btn.classList.add('active');
+};
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+document.addEventListener("DOMContentLoaded", function() {
+  renderSelector();
+  renderAll();
+});
+</script>
+</body>
+</html>
