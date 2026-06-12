@@ -181,10 +181,6 @@ h1 span{color:var(--sea)}
 </style>
 </head>
 <body>
-  <div style="display: flex; align-items: center; gap: 15px; padding: 10px 0;">
-    <img src="la-arana-768x768.jpg.webp" alt="Logo Jábega La Araña" style="max-width: 60px; height: auto; border-radius: 50%;">
-    <span style="font-weight: bold; font-size: 1.2rem; color: var(--sea);">La Araña</span>
-</div>
 <div class="app">
 
 <header>
@@ -415,21 +411,11 @@ function selectRace(idx) {
 // ═══════════════════════════════════════════════════
 function renderAll() {
   const r = RACES[currentRace];
-
-  const badgeEl = document.getElementById('hdr-badge');
-  if (badgeEl && r) {
-    const sufijoRegata = r.nombre.split('Regata de ')[1] || r.nombre;
-    const posIcons = {1:'🥇', 2:'🥈', 3:'🥉'};
-    const icono = posIcons[r.pos] || '🏅';
-    badgeEl.innerHTML = `${icono} ${r.pos}.º · ${sufijoRegata}`;
-  }
-
   renderResumen(r);
   renderCadencia(r);
   renderCiaboga(r);
   renderRemeros(r);
   renderMejoras(r);
-}
   // historico is race-independent
 }
 
@@ -844,10 +830,7 @@ function renderHistorico() {
   }).join('');
 
   // hitos
-  // hitos
   const last=RACES[RACES.length-1];
-
-
   const HITOS=[
     {label:'Reaceleración post-ciaboga',objetivo:'≤15 s', val:`${last.reaceleracion} s`,ok:last.reaceleracion<=15},
     {label:'Tumba en sprint',           objetivo:'>20°',  val:`${last.tumbaSprint}°`,  ok:last.tumbaSprint>20},
