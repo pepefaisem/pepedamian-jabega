@@ -264,4 +264,169 @@ const RACES = [
       {t:'2:50',col:'#0f7a8a',txt:'<b>Reaceleración</b> — Cadencia sube a ~24 pal/min. La «caída» que se veía era esta fase, no fatiga.'},
       {t:'3:00',col:'#993C1D',txt:'<b>Crucero retomado → Sprint</b> — Patrón se incorpora a remar. Transición directa al sprint.'},
     ],
-    alineacion:
+    alineacion:[
+      {id:'che',    nombre:'Che',        pos:'B1 · Pacha', banda:'babor',   avatar:'CH'},
+      {id:'jcarlos',nombre:'Juan Carlos',pos:'B2',         banda:'babor',   avatar:'JC'},
+      {id:'paco',   nombre:'Paco',       pos:'B3',         banda:'babor',   avatar:'PA'},
+      {id:'antonio',nombre:'Antonio',    pos:'B4',         banda:'babor',   avatar:'AN'},
+      {id:'benjamin',nombre:'Benjamín',  pos:'E1 · Marca', banda:'estribor',avatar:'BJ'},
+      {id:'juanjo', nombre:'Juanjo',     pos:'E2',         banda:'estribor',avatar:'JJ'},
+      {id:'asier',  nombre:'Asier',      pos:'E3',         banda:'estribor',avatar:'AS'},
+      {id:'pedro',  nombre:'Pedro',      pos:'Patrón',      banda:'patron',  avatar:'PT'},
+    ],
+    remeros:{
+      che:    {scores:[{l:'Técnica',p:82,c:'fg'},{l:'Sincronía',p:92,c:'fg'},{l:'Resistencia',p:72,c:'fa'},{l:'Amplitud',p:85,c:'fg'},{l:'Ciaboga',p:80,c:'fp'}],
+               phases:['chip-g','chip-g','chip-p','chip-a','chip-g'],
+               notes:'Ritmo claro y firme. Buena amplitud. Pequeña pérdida en reaceleración post-ciaboga.',
+               priority:'Entrenar la primera palada tras la ciaboga como acción refleja.'},
+      jcarlos:{scores:[{l:'Técnica',p:84,c:'fg'},{l:'Sincronía',p:88,c:'fg'},{l:'Resistencia',p:80,c:'fg'},{l:'Constancia',p:86,c:'fg'},{l:'Ciaboga',p:82,c:'fg'}],
+               phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+               notes:'Remero más consistente. Mantiene postura y extensión en toda la regata. Rápida reincorporación post-ciaboga.',
+               priority:'Mantener el level. Puede asumir liderazgo si el pacha decae.'},
+      paco:   {scores:[{l:'Técnica',p:72,c:'fa'},{l:'Sincronía',p:74,c:'fa'},{l:'Resistencia',p:55,c:'fr'},{l:'Recobro',p:63,c:'fa'},{l:'Ciaboga',p:70,c:'fa'}],
+               phases:['chip-g','chip-a','chip-a','chip-a','chip-a'],
+               notes:'Acusa fatiga precoz: recobro se acorta a partir del min 2. Hombros suben bajo esfuerzo.',
+               priority:'Programa de fuerza-resistencia fuera del agua. Series largas priorizando calidad técnica.'},
+      antonio:{scores:[{l:'Técnica',p:78,c:'fg'},{l:'Sincronía',p:72,c:'fa'},{l:'Resistencia',p:70,c:'fa'},{l:'Sprint',p:67,c:'fa'},{l:'Ciaboga',p:75,c:'fp'}],
+               phases:['chip-g','chip-g','chip-p','chip-a','chip-a'],
+               notes:'Buena primera mitad. A partir del min 2 pierde coordinación con el pacha. Fatiga afecta timing de entrada.',
+               priority:'Series de seguimiento del ritmo bajo fatiga: 3×3 min a ritmo de carrera.'},
+      benjamin:{scores:[{l:'Técnica',p:76,c:'fg'},{l:'Sincronía',p:65,c:'fa'},{l:'Resistencia',p:74,c:'fa'},{l:'Reacción',p:60,c:'fa'},{l:'Ciaboga',p:62,c:'fa'}],
+               phases:['chip-g','chip-g','chip-a','chip-a','chip-a'],
+               notes:'Como marca retarda ~0.5 s los cambios del pacha, arrastrando al resto de estribor.',
+               priority:'Sesiones dúo pacha–marca para reducir retardo a <0.2 s.'},
+      juanjo: {scores:[{l:'Técnica',p:70,c:'fa'},{l:'Sincronía',p:64,c:'fa'},{l:'Resistencia',p:68,c:'fa'},{l:'Ángulo',p:55,c:'fr'},{l:'Ciaboga',p:60,c:'fa'}],
+               phases:['chip-g','chip-a','chip-a','chip-r','chip-a'],
+               notes:'Ángulo de ataque cae en segunda mitad. Hombros altos y remo más vertical.',
+               priority:'Extensión hacia proa en posición de agarre. Grabación lateral para detectar pérdida de ángulo.'},
+      asier:  {scores:[{l:'Técnica',p:62,c:'fa'},{l:'Sincronía',p:60,c:'fa'},{l:'Extracción',p:50,c:'fr'},{l:'Resistencia',p:65,c:'fa'},{l:'Ciaboga',p:58,c:'fa'}],
+               phases:['chip-g','chip-a','chip-a','chip-r','chip-a'],
+               notes:'Remo sale antes de completar el tirón. Pérdida de energía en la extracción, más pronunciada en segunda mitad.',
+               priority:'Trabajo de extracción: finalizar tirón hasta la cadera. Paladas cortas para sentir el final del recorrido.'},
+      pedro:  {scores:[{l:'Gobierno',p:92,c:'fg'},{l:'Rumbo',p:95,c:'fg'},{l:'Ciaboga',p:85,c:'fp'},{l:'Comunicación',p:62,c:'fa'},{l:'Sprint',p:80,c:'fg'}],
+               phases:['chip-g','chip-g','chip-p','chip-a','chip-g'],
+               notes:'Gestión de espailla sobresaliente. Ciaboga limpia. Comunicación verbal no perceptible en el bajón.',
+               priority:'Protocolo verbal: aviso pre-ciaboga, "¡ya!" al inicio de reaceleración, señal de sprint en 3:00.'},
+    },
+    mejoras:[
+      {tipo:'pos',icon:'🎯',ttl:'Mantener: salida explosiva',txt:'34 pal/min los primeros 30 s. Consolidar la señal de inicio entre pacha y patrón.'},
+      {tipo:'pos',icon:'⚓',ttl:'Mantener: sprint con patrón',txt:'Incorporación de Pedro a remar desde 3:00 aporta potencia extra. Fijar como norma.'},
+      {tipo:'pos',icon:'✅',ttl:'Mantener: rumbo impecable',txt:'Mínimas correcciones de espailla. Cero energía perdida en deriva lateral.'},
+      {tipo:'cib',icon:'🔄',ttl:'P1: Reaceleración post-ciaboga',txt:'25 s para volver a crucero. Objetivo <15 s. Entrenar la ciaboga como fase específica.'},
+      {tipo:'neg',icon:'🔄',ttl:'P2: Estribor en transiciones',txt:'Marca retarda ~0.5 s al pacha. Sesiones dúo pacha–marca. Objetivo: <0.2 s.'},
+      {tipo:'neg',icon:'📐',ttl:'P3: Ángulo de ataque',txt:'Remos más verticales bajo fatiga. Paladas lentas en espejo para fijar el hábito.'},
+      {tipo:'tip',icon:'💬',ttl:'Señal verbal de sprint',txt:'La transición a 3:00 es silenciosa. Una señal clara de Pedro sincronizaría mejor.'},
+    ],
+  },
+  {
+    week:2, date:'6 Junio 2026', nombre:'Regata de Huelin',
+    pos:3, total:12, tiempoOficial:'3:31.82', difLider:1.39,
+    distancia:680, tiempoReal:'3:37', cadMedia:28, cadMax:33, cadSprint:32,
+    ciabogaDur:20, reaceleracion:15, tumbaIda:28, tumbaSprint:18, velPalada:7.1,
+    notes:'Gran mejora vs líder (+1.4 s). Ciaboga más rápida (20 s). Reaceleración objetivo cumplido (15 s). Tumba sprint mejorada.',
+    fases:[
+      {nombre:'Ida',       t:'0:06', cad:33, tumba:28, vel:7.2, col:'#185FA5', flex:13},
+      {nombre:'Desarrollo',t:'0:36', cad:28, tumba:26, vel:7.1, col:'#1D9E75', flex:26},
+      {nombre:'Ciaboga',   t:'1:50', cad:null,tumba:null,vel:null,col:'#7b52a8',flex:13},
+      {nombre:'Reac.',     t:'2:10', cad:25, tumba:20, vel:6.8, col:'#0f7a8a', flex:11},
+      {nombre:'Sprint',    t:'2:25', cad:32, tumba:18, vel:6.6, col:'#993C1D', flex:37},
+    ],
+    ciabogaSteps:[
+      {t:'1:50',col:'#185FA5',txt:'<b>Aproximación a la boya</b> — Boya roja visible. Patrón prepara el giro con más anticipación que en Pedregalejo.'},
+      {t:'1:55',col:'#7b52a8',txt:'<b>Inicio del giro</b> — Virada más ajustada al la boya. Radio menor que en Pedregalejo.'},
+      {t:'2:02',col:'#7b52a8',txt:'<b>Giro completado</b> — En solo ~12 s la barca está orientada de vuelta. Mejora notable.'},
+      {t:'2:10',col:'#0f7a8a',txt:'<b>Reaceleración rápida</b> — En 15 s ya están a cadencia de crucero. Objetivo cumplido.'},
+      {t:'2:25',col:'#993C1D',txt:'<b>Sprint</b> — Encadena directamente desde la reaceleración. Patrón rema desde el inicio del sprint.'},
+    ],
+    alineacion:[
+      {id:'che',     nombre:'Che',       pos:'B1 · Pacha', banda:'babor',   avatar:'CH'},
+      {id:'juan',    nombre:'Juan',      pos:'B2',         banda:'babor',   avatar:'JU'},
+      {id:'jcarlos', nombre:'Juan Carlos',pos:'B3',        banda:'babor',   avatar:'JC'},
+      {id:'paco',    nombre:'Paco',      pos:'B4',         banda:'babor',   avatar:'PA'},
+      {id:'patricio',nombre:'Patricio',  pos:'E1 · Marca', banda:'estribor',avatar:'PC'},
+      {id:'benjamin',nombre:'Benjamín',  pos:'E2',         banda:'estribor',avatar:'BJ'},
+      {id:'enrique', nombre:'Enrique',   pos:'E3',         banda:'estribor',avatar:'EN'},
+      {id:'pedro',   nombre:'Pedro',     pos:'Patrón',      banda:'patron',  avatar:'PT'},
+    ],
+    remeros:{
+      che:     {scores:[{l:'Técnica',p:85,c:'fg'},{l:'Sincronía',p:93,c:'fg'},{l:'Resistencia',p:78,c:'fg'},{l:'Amplitud',p:86,c:'fg'},{l:'Ciaboga',p:88,c:'fg'}],
+                phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+                notes:'Mejora clara respecto a Pedregalejo. Reincorporación post-ciaboga más rápida. Mantiene ritmo en sprint.',
+                priority:'Consolidar la mejora en resistencia. Objetivo: cadencia sprint ≥33.',
+                evol:{ref:'che',label:'vs Pedregalejo',tipo:'up'}},
+      juan:    {scores:[{l:'Técnica',p:75,c:'fg'},{l:'Sincronía',p:78,c:'fg'},{l:'Resistencia',p:72,c:'fa'},{l:'Amplitud',p:70,c:'fa'},{l:'Ciaboga',p:74,c:'fa'}],
+                phases:['chip-g','chip-g','chip-a','chip-a','chip-a'],
+                notes:'Primera regata en B2. Buena técnica individual. Sincronía con el pacha sólida en la primera mitad.',
+                priority:'Trabajar la resistencia para mantener el nivel técnico en la segunda mitad.',
+                evol:{ref:null,label:'Primera regata',tipo:'new'}},
+      jcarlos: {scores:[{l:'Técnica',p:83,c:'fg'},{l:'Sincronía',p:85,c:'fg'},{l:'Resistencia',p:82,c:'fg'},{l:'Constancia',p:84,c:'fg'},{l:'Ciaboga',p:85,c:'fg'}],
+                phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+                notes:'Se adapta bien al cambio de B2 a B3. Mantiene su nivel alto. Muy buen referente para la nueva alineación.',
+                priority:'Referente de consistencia. Puede tutorizar a Juan en B2.',
+                evol:{ref:'jcarlos',label:'vs Pedregalejo (B2→B3)',tipo:'same'}},
+      paco:    {scores:[{l:'Técnica',p:74,c:'fa'},{l:'Sincronía',p:75,c:'fa'},{l:'Resistencia',p:62,c:'fa'},{l:'Recobro',p:67,c:'fa'},{l:'Ciaboga',p:72,c:'fa'}],
+                phases:['chip-g','chip-a','chip-a','chip-a','chip-a'],
+                notes:'Leve mejora respecto a Pedregalejo pero sigue siendo el punto más débil en resistencia. El cambio a B4 no ha afectado negativamente.',
+                priority:'Continuar con programa de fuerza-resistencia. El objetivo es mantener el recobro largo en la segunda mitad.',
+                evol:{ref:'paco',label:'vs Pedregalejo (B3→B4)',tipo:'up'}},
+      patricio:{scores:[{l:'Técnica',p:78,c:'fg'},{l:'Sincronía',p:74,c:'fa'},{l:'Resistencia',p:76,c:'fg'},{l:'Reacción',p:72,c:'fa'},{l:'Ciaboga',p:70,c:'fa'}],
+                phases:['chip-g','chip-g','chip-a','chip-a','chip-a'],
+                notes:'Primera regata como marca. Mejor reacción a cambios de ritmo que Benjamín en Pedregalejo (~0.3 s de retardo). Margen de mejora en la segunda mitad.',
+                priority:'Sesiones dúo pacha–marca. Objetivo: retardo <0.2 s en toda la regata.',
+                evol:{ref:null,label:'Primera regata',tipo:'new'}},
+      benjamin:{scores:[{l:'Técnica',p:77,c:'fg'},{l:'Sincronía',p:78,c:'fg'},{l:'Resistencia',p:76,c:'fg'},{l:'Ángulo',p:68,c:'fa'},{l:'Ciaboga',p:72,c:'fa'}],
+                phases:['chip-g','chip-g','chip-a','chip-g','chip-g'],
+                notes:'Sin el rol de marca mejora notablemente su sincronía y técnica. El cambio de E1 a E2 le ha favorecido en esta regata.',
+                priority:'Consolidar la mejora técnica. El ángulo de ataque sigue siendo el punto a trabajar.',
+                evol:{ref:'benjamin',label:'vs Pedregalejo (E1→E2)',tipo:'up'}},
+      enrique: {scores:[{l:'Técnica',p:70,c:'fa'},{l:'Sincronía',p:68,c:'fa'},{l:'Resistencia',p:72,c:'fa'},{l:'Extracción',p:65,c:'fa'},{l:'Ciaboga',p:66,c:'fa'}],
+                phases:['chip-g','chip-a','chip-a','chip-a','chip-a'],
+                notes:'Primera regata. Nivel técnico aceptable. La extracción es el punto más débil: sale antes de completar el tirón.',
+                priority:'Trabajo de extracción: finalizar tirón hasta la cadera. Revisión en vídeo lateral.',
+                evol:{ref:null,label:'Primera regata',tipo:'new'}},
+      pedro:   {scores:[{l:'Gobierno',p:93,c:'fg'},{l:'Rumbo',p:95,c:'fg'},{l:'Ciaboga',p:90,c:'fg'},{l:'Comunicación',p:72,c:'fa'},{l:'Sprint',p:85,c:'fg'}],
+                phases:['chip-g','chip-g','chip-g','chip-g','chip-g'],
+                notes:'Ciaboga claramente mejor que en Pedregalejo: radio más ajustado, giro en ~12 s. Se incorpora a remar antes en el sprint. Comunicación verbal mejorada.',
+                priority:'Establecer señal verbal estándar pre-ciaboga para toda la temporada.',
+                evol:{ref:'pedro',label:'vs Pedregalejo',tipo:'up'}},
+    },
+    mejoras:[
+      {tipo:'pos',icon:'✅',ttl:'Conseguido: reaceleración 15 s',txt:'Objetivo cumplido. De 25 s a 15 s. El entrenamiento específico de ciaboga ha funcionado.'},
+      {tipo:'pos',icon:'✅',ttl:'Conseguido: ciaboga más rápida',txt:'20 s vs 25 s. Radio más ajustado y giro más decidido de Pedro.'},
+      {tipo:'pos',icon:'✅',ttl:'Conseguido: tumba sprint +6°',txt:'De 12° a 18°. La mejora en técnica bajo fatiga es visible. Objetivo: superar 20°.'},
+      {tipo:'neg',icon:'📐',ttl:'P1: Tumba sprint aún por debajo',txt:'18° vs objetivo de 20°. Continuar trabajo técnico en espejo bajo fatiga.'},
+      {tipo:'neg',icon:'🔄',ttl:'P2: Marca (Patricio) en transiciones',txt:'~0.3 s de retardo. Mejor que Benjamín en Pedregalejo pero aún por encima del objetivo <0.2 s.'},
+      {tipo:'tip',icon:'💬',ttl:'Comunicación verbal mejorada',txt:'Pedro más activo verbalmente en Huelin. Continuar con protocolo de señales en cada regata.'},
+    ],
+  },
+];
+
+let currentRace = RACES.length - 1;
+
+function renderSelector() {
+  document.getElementById('race-selector').innerHTML = RACES.map((r,i) => `
+    <button class="race-btn ${i===currentRace?'active':''}" onclick="selectRace(${i})">
+      ${r.nombre}
+      <span class="race-btn-date">${r.date} · ${r.pos}.º/${r.total}</span>
+    </button>`).join('');
+}
+
+function selectRace(idx) {
+  currentRace = idx;
+  renderSelector();
+  renderAll();
+}
+
+function renderAll() {
+  const r = RACES[currentRace];
+  renderResumen(r);
+  // Las demás llamadas de renderizado irían aquí
+}
+
+window.onload = function() {
+  renderSelector();
+  renderAll();
+};
+</script>
+</body>
+</html>
