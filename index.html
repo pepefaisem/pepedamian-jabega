@@ -181,7 +181,7 @@ h1 span{color:var(--sea)}
 </style>
 </head>
 <body>
-  <div style="display: flex; align-items: center; gap: 15px; padding: 10px 20px;">
+  <div style="display: flex; align-items: center; gap: 15px; padding: 10px 0;">
     <img src="la-arana-768x768.jpg.webp" alt="Logo La Araña" style="max-width: 60px; height: auto; border-radius: 50%;">
     <span style="font-weight: bold; font-size: 1.2rem; color: var(--sea);">La Araña</span>
 </div>
@@ -198,7 +198,7 @@ h1 span{color:var(--sea)}
         <span>Mejor dif. con 1.º: <b>+1.39 s</b></span>
       </div>
     </div>
-    <div class="badge" id="hdr-badge">🥉 3.º · Huelin</div>
+    <div class="badge" id="hdr-badge">3º Huelín</div>
   </div>
 
   <div class="race-selector" id="race-selector"></div>
@@ -231,6 +231,7 @@ const RACES = [
     distancia:700, tiempoReal:'3:56', cadMedia:27, cadMax:34, cadSprint:31,
     ciabogaDur:25, reaceleracion:25, tumbaIda:30, tumbaSprint:12, velPalada:7.0,
     notes:'Ciaboga limpia. Reaceleración mejorable (25 s). Tumba cae en sprint (30°→12°).',
+    // Fases para gráfico cadencia
     fases:[
       {nombre:'Ida',       t:'0:16', cad:34, tumba:30, vel:7.2, col:'#185FA5', flex:13},
       {nombre:'Desarrollo',t:'0:46', cad:27, tumba:28, vel:7.0, col:'#1D9E75', flex:25},
@@ -244,7 +245,7 @@ const RACES = [
       {t:'2:20',col:'#7b52a8',txt:'<b>Giro en curso</b> — Boya pegada al costado babor. Remos asimétricas. Patrón firme en la espailla.'},
       {t:'2:28',col:'#7b52a8',txt:'<b>Completando la virada</b> — Proa apunta a la playa. Remos de estribor tardan ~5 s en reordenarse.'},
       {t:'2:35',col:'#0f7a8a',txt:'<b>Fin de ciaboga</b> — Barca orientada. Pacha marca ~22 pal/min para reorganizar.'},
-      {t:'2:50',col:'#0f7a8a',txt:'<b>Reaceleración</b> — Cadencia sube a ~24 pal/min. La «caída» que se veía era esta fase, no fatiga.'},
+      {t:'2:50',col:'#0f7a8a',txt:'<b>Reaceleración</b> — Cadencia sube a ~24 pal/min. La «caída» que se veía era esta phase, no fatiga.'},
       {t:'3:00',col:'#993C1D',txt:'<b>Crucero retomado → Sprint</b> — Patrón se incorpora a remar. Transición directa al sprint.'},
     ],
     alineacion:[
@@ -253,7 +254,7 @@ const RACES = [
       {id:'paco',   nombre:'Paco',       pos:'B3',         banda:'babor',   avatar:'PA'},
       {id:'antonio',nombre:'Antonio',    pos:'B4',         banda:'babor',   avatar:'AN'},
       {id:'benjamin',nombre:'Benjamín',  pos:'E1 · Marca', banda:'estribor',avatar:'BJ'},
-      {id:'juanjo', nombre:'Juanjo',     pos:'E2',         banda:'estribor',avatar:'JJ'},
+      {id:'juanjo', mbreno:'Juanjo',     pos:'E2',         banda:'estribor',avatar:'JJ'},
       {id:'asier',  nombre:'Asier',      pos:'E3',         banda:'estribor',avatar:'AS'},
       {id:'pedro',  nombre:'Pedro',      pos:'Patrón',     banda:'patron',  avatar:'PT'},
     ],
@@ -410,13 +411,16 @@ function selectRace(idx) {
 // ACTUALIZAR CABECERA DINÁMICAMENTE
 // ═══════════════════════════════════════════════════
 function updateHeader(r) {
+  // Limpiamos "Regata de " para que solo muestre el nombre del lugar (Pedregalejo o Huelín)
   const lugar = r.nombre.replace('Regata de ', '');
+  
+  // Asignamos medalla según la posición asignada en los datos
   let emoji = '🏅';
   if (r.pos === 1) emoji = '🥇';
   if (r.pos === 2) emoji = '🥈';
   if (r.pos === 3) emoji = '🥉';
 
-  document.getElementById('hdr-badge').innerHTML = `${emoji} ${r.pos}.º · ${lugar}`;
+  document.getElementById('hdr-badge').innerHTML = `${emoji} ${r.pos}º ${lugar}`;
 }
 
 // ═══════════════════════════════════════════════════
@@ -424,7 +428,7 @@ function updateHeader(r) {
 // ═══════════════════════════════════════════════════
 function renderAll() {
   const r = RACES[currentRace];
-  updateHeader(r);
+  updateHeader(r); // <-- Actualiza dinámicamente la posición superior derecha
   renderResumen(r);
   renderCadencia(r);
   renderCiaboga(r);
@@ -450,28 +454,39 @@ function renderResumen(r) {
       <div class="sec-lbl">Fases · ${r.tiempoReal}</div>
       <div class="phase-bar">${r.fases.map(f=>`<div class="ph" style="background:${f.col};flex:${f.flex}"><span>${f.nombre}</span><span class="ph-sub">${f.t}</span></div>`).join('')}</div>
       <div class="phase-legend mt16">
-        ${r.fases.map(f=>`<span><div class="pl-dot" style="background:${f.col}"></div> ${f.nombre} (${f.cad ? f.cad + ' pal/min' : 'Giro'})</span>`).join(' ')}
+        <span><div class="pl-dot ph-ida"></div> Ida (~16s)</span>
+        <span><div class="pl-dot ph-dev"></div> Desarrollo (~27 pal/min)</span>
+        <span><div class="pl-dot ph-ciab"></div> Ciaboga</span>
+        <span><div class="pl-dot ph-reac"></div> Reaceleración</span>
+        <span><div class="pl-dot ph-sprint"></div> Sprint final (~31 pal/min)</span>
       </div>
     </div>
-    <div class="card"><div class="sec-lbl">Notas del analista</div><div style="font-size:14px; line-height:1.6; color:var(--text2);">${r.notes}</div></div>`;
+    <div class="card">
+      <div class="sec-lbl">Notas del Analista</div>
+      <div style="font-size:14px; line-height:1.6; color:var(--text2);">${r.notes}</div>
+    </div>`;
 }
 
 // ── CADENCIA ────────────────────────────────────────
 function renderCadencia(r) {
   document.getElementById('panel-cadencia').innerHTML = `
     <div class="card mb16">
-      <div class="sec-lbl">Distribución de Esfuerzo (Ritmo de Carrera)</div>
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-lbl">Cadencia Salida</div><div class="stat-val">${r.cadMax}</div><div class="stat-unit">pal/min</div></div>
-        <div class="stat-card"><div class="stat-lbl">Cadencia Crucero</div><div class="stat-val">${r.cadMedia}</div><div class="stat-unit">pal/min</div></div>
-        <div class="stat-card"><div class="stat-lbl">Cadencia Sprint</div><div class="stat-val">${r.cadSprint}</div><div class="stat-unit">pal/min</div></div>
+      <div class="sec-lbl">Gráfico de Cadencia Real vs Objetivo</div>
+      <div class="chart-area" style="height:220px; display:flex; align-items:flex-end; padding:20px; gap:15px; position:relative;">
+        <div style="position:absolute; left:20px; top:20px; font-size:12px; color:var(--text3);">Paladas por minuto (media móvil)</div>
+        <div style="flex:1; height:80%; background:linear-gradient(0deg, var(--sea-light), transparent); border-top:3px solid var(--sea); border-radius:4px 4px 0 0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-family:'Syne'; font-size:18px;">${r.cadMax} <span style="font-size:10px; font-weight:400; margin-left:4px;">Salida</span></div>
+        <div style="flex:1; height:65%; background:linear-gradient(0deg, var(--sea-mid), transparent); border-top:3px solid var(--sea-mid); border-radius:4px 4px 0 0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-family:'Syne'; font-size:18px;">${r.cadMedia} <span style="font-size:10px; font-weight:400; margin-left:4px;">Crucero</span></div>
+        <div style="flex:1; height:75%; background:linear-gradient(0deg, var(--coral), transparent); border-top:3px solid var(--coral); border-radius:4px 4px 0 0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-family:'Syne'; font-size:18px;">${r.cadSprint} <span style="font-size:10px; font-weight:400; margin-left:4px;">Sprint</span></div>
       </div>
     </div>
-    <div class="card">
-      <div class="sec-lbl">Inclinación / Ángulo ("Tumba") Promedio</div>
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-lbl">Tumba de Ida</div><div class="stat-val">${r.tumbaIda}°</div><div class="stat-unit">Grados de ataque</div></div>
-        <div class="stat-card"><div class="stat-lbl">Tumba en Sprint</div><div class="stat-val" style="color:var(--coral)">${r.tumbaSprint}°</div><div class="stat-unit">Bajo fatiga</div></div>
+    <div class="grid2">
+      <div class="card">
+        <div class="sec-lbl">Ángulo Promedio de "Tumba"</div>
+        <div style="font-family:'Syne'; font-size:32px; font-weight:800; color:var(--sea);">${r.tumbaIda}° <span style="font-size:14px; font-family:'DM Sans'; font-weight:400; color:var(--text2);">en el largo de Ida</span></div>
+      </div>
+      <div class="card">
+        <div class="sec-lbl">Pérdida por Fatiga (Sprint)</div>
+        <div style="font-family:'Syne'; font-size:32px; font-weight:800; color:var(--coral);">${r.tumbaSprint}° <span style="font-size:14px; font-family:'DM Sans'; font-weight:400; color:var(--text2);">caída técnica final</span></div>
       </div>
     </div>`;
 }
@@ -480,11 +495,11 @@ function renderCadencia(r) {
 function renderCiaboga(r) {
   document.getElementById('panel-ciaboga').innerHTML = `
     <div class="ciab-grid">
-      <div class="ciab-metric"><div class="stat-lbl">Duración de Maniobra</div><div class="stat-val">${r.ciabogaDur} s</div><div class="stat-unit">Giro completo</div></div>
-      <div class="ciab-metric"><div class="stat-lbl">Reaceleración</div><div class="stat-val">${r.reaceleracion} s</div><div class="stat-unit">Tiempo hasta crucero</div></div>
+      <div class="ciab-metric"><div class="stat-lbl">Duración Giro</div><div class="stat-val">${r.ciabogaDur}s</div><div class="stat-unit">tiempo total en curva</div></div>
+      <div class="ciab-metric"><div class="stat-lbl">Fase de Pérdida</div><div class="stat-val">${r.reaceleracion}s</div><div class="stat-unit">retorno a la velocidad crucero</div></div>
     </div>
     <div class="card">
-      <div class="sec-lbl">Cronología Detallada de la Virada</div>
+      <div class="sec-lbl">Cronología de la Virada</div>
       <div>
         ${r.ciabogaSteps.map(step => `
           <div class="ciab-step">
@@ -577,15 +592,33 @@ function renderMejoras(r) {
 function renderHistorico() {
   document.getElementById('panel-historico').innerHTML = `
     <div class="hist-card">
-      <div class="sec-lbl">Historial de Regatas (Temporada 2026)</div>
+      <div class="sec-lbl">Evolución de Rendimiento General</div>
       ${RACES.map(r => `
         <div class="week-row">
-          <div class="week-num">Semp. ${r.week}</div>
-          <div class="week-date"><b>${r.nombre}</b> <span style="font-size:12px; color:var(--text3)">(${r.date})</span></div>
+          <div class="week-num">Semana ${r.week}</div>
+          <div class="week-date"><b>${r.nombre}</b></div>
           <div class="week-cadencia">${r.cadMedia} pal/min</div>
-          <div class="week-pos pos-${r.pos}">${r.pos}.º / ${r.total}</div>
+          <div class="week-pos pos-${r.pos}">${r.pos}º Puesto</div>
         </div>
       `).join('')}
+    </div>
+    <div class="card">
+      <div class="sec-lbl">Hitos Técnicos de la Temporada</div>
+      <div class="hito-row">
+        <div class="hito-icon">🎯</div>
+        <div class="hito-label">Salida Explosiva (34 pal/min)</div>
+        <div class="hito-vals"><span class="hito-ok">Conseguido</span> <div class="hito-badge badge-ok">Estable</div></div>
+      </div>
+      <div class="hito-row">
+        <div class="hito-icon">🔄</div>
+        <div class="hito-label">Optimización de Reaceleración Post-Ciaboga</div>
+        <div class="hito-vals"><span class="hito-ok">15 s (Objetivo)</span> <div class="hito-badge badge-ok">Mejorado</div></div>
+      </div>
+      <div class="hito-row">
+        <div class="hito-icon">📐</div>
+        <div class="hito-label">Mantenimiento de Ángulo ("Tumba") bajo fatiga</div>
+        <div class="hito-vals"><span class="hito-nog">18° / Plan 20°</span> <div class="hito-badge badge-prog">En progreso</div></div>
+      </div>
     </div>`;
 }
 
